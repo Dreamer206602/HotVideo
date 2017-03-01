@@ -39,6 +39,12 @@ public class App extends Application {
     }
 
 
+    public void unRegisterActivity(Activity activity){
+        if (activity != null) {
+            mActivities.remove(activity);
+        }
+    }
+
     public void exitApp(){
         if(mActivities!=null){
             synchronized (mActivities){
