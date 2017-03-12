@@ -39,7 +39,16 @@ dependencies {
 //
 //        })
 
-        testCompile 'junit:junit:4.12'
+    //    compile 'fm.jiecao:jiecaovideoplayer:4.8.2'
+    //    compile 'com.pgyersdk:sdk:2.4.0'
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.4@aar') {
+        transitive = true
+    }
+    compile('com.github.afollestad.material-dialogs:commons:0.8.5.4@aar') {
+        transitive = true
+    }
+    //canary
+    //material-design-iconic
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'org.simple:androideventbus:1.0.5.1'
@@ -51,36 +60,27 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.jude:easyrecyclerview:4.0.6'
     compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.jude:rollviewpager:1.4.5'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
-    //    compile 'fm.jiecao:jiecaovideoplayer:4.8.2'
     compile 'fm.jiecao:jiecaovideoplayer:4.7.1_preview'
     compile 'org.jetbrains:annotations-java5:15.0'
     compile 'com.daprlabs.aaron:cardstack:0.3.1-beta0'
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'me.yokeyword:fragmentation:0.7.10'
-//    compile 'com.pgyersdk:sdk:2.4.0'
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.4@aar') {
-        transitive = true
-    }
-    compile('com.github.afollestad.material-dialogs:commons:0.8.5.4@aar') {
-        transitive = true
-    }
-    //canary
     compile 'com.github.markzhai:blockcanary-android:1.3.1'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4'
     compile 'com.orhanobut:logger:1.15'
     compile 'org.slf4j:slf4j-api:1.7.12'
-    //material-design-iconic
     compile 'com.mikepenz:iconics-core:2.5.5@aar'
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
     compile 'com.mikepenz:foundation-icons-typeface:3.0.0.1@aar'
     compile 'com.android.support:recyclerview-v7:25.1.1'
     compile 'com.android.support:cardview-v7:25.1.1'
+    testCompile 'junit:junit:4.12'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4'
 }

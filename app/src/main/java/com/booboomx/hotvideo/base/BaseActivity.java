@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -14,12 +13,13 @@ import com.booboomx.hotvideo.app.App;
 import com.booboomx.hotvideo.utils.KL;
 
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by booboomx on 17/2/28.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity{
+public abstract class BaseActivity<T extends BasePresenter> extends SupportActivity{
 
 
     protected Unbinder mUnBinder;
@@ -29,8 +29,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         KL.d(this.getClass(),this.getClass().getName()+"--------->onCreate");
+
 
 
         init();
@@ -91,11 +91,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         KL.d(this.getClass(),this.getClass().getName()+"----------->onDestroy");
         App.getInstance().unRegisterActivity(this);
 
-        if (mUnBinder != null) {
 
-            mUnBinder.unbind();
 
-        }
+//        if (mUnBinder != null) {
+//
+//            mUnBinder.unbind();
+//
+//        }
         mPresenter=null;
 
 
