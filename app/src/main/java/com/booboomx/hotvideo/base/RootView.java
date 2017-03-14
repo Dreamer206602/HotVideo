@@ -17,7 +17,7 @@ public abstract class RootView<T extends BasePresenter>extends LinearLayout {
     protected  boolean mActive;//是否被销毁
     protected  Context mContext;
     private Unbinder mUnbinder;
-    private  T mPresenter;
+    public   T mPresenter;
 
 
 

@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
+import com.booboomx.hotvideo.R;
 
 import java.util.LinkedList;
 import java.util.List;

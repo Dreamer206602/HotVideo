@@ -1,5 +1,7 @@
 package com.booboomx.hotvideo.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.booboomx.hotvideo.base.RxPresenter;
 import com.booboomx.hotvideo.presenter.contract.WelcomeContract;
 import com.booboomx.hotvideo.utils.Preconditions;
@@ -23,7 +25,7 @@ public class WelcomePresenter extends RxPresenter implements WelcomeContract.Pre
     public static final int COUNT_DOWN_TIME=2200;
 
 
-    public WelcomePresenter(WelcomeContract.View view) {
+    public WelcomePresenter(@NonNull WelcomeContract.View view) {
         mView = Preconditions.checkNotNull(view);
         mView.setPresenter(this);
         getWelcomeData();

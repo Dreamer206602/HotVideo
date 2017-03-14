@@ -12,19 +12,18 @@ import rx.subscriptions.CompositeSubscription;
  * @param <T>
  */
 public class RxPresenter<T> implements BasePresenter<T> {
-    protected  T mView;
-    protected CompositeSubscription mCompositeSubscription;
+    public   T mView;
+    public CompositeSubscription mCompositeSubscription;
 
 
-    protected  void unSubscribe(){
+    public  void unSubscribe(){
         if (mCompositeSubscription != null) {
             mCompositeSubscription.unsubscribe();
         }
     }
 
-    protected  void  addSubscribe(Subscription subscription){
-        if (subscription == null) {
-
+    public   void  addSubscribe(Subscription subscription){
+        if (mCompositeSubscription == null) {
             mCompositeSubscription=new CompositeSubscription();
         }
         mCompositeSubscription.add(subscription);

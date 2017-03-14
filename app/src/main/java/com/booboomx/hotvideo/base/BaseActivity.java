@@ -23,7 +23,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
 
 
     protected Unbinder mUnBinder;
-    private T mPresenter;
+    public T mPresenter;
 
 
     @Override
