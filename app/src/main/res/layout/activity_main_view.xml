@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.booboomx.hotvideo.widget.ResideLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                           android:id="@+id/resideLayout"
+                                           style="@style/container_style">
+
+
+    <com.booboomx.hotvideo.widget.theme.ColorRelativeLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/top_menu"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_marginLeft="25dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/photo"
+                app:riv_border_width="0dp"
+                app:riv_corner_radius="100dp"
+                android:id="@+id/iv_avator"
+                android:layout_width="80dp"
+                android:layout_height="80dp"/>
+
+
+            <TextView
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="80dp"
+                android:id="@+id/iv_desc"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="热门电影"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:scrollbars="none"
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/tv_collection"
+                    style="@style/MenuStyle"
+                    android:text="@string/collection"
+                   />
+
+                <TextView
+                    android:id="@+id/tv_downLoad"
+                    style="@style/MenuStyle"
+                    android:text="@string/downLoad"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_goodSoft"
+                    style="@style/MenuStyle"
+                    android:text="@string/goodSoft"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_share"
+                    style="@style/MenuStyle"
+                    android:text="@string/share"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_feedBack"
+                    style="@style/MenuStyle"
+                    android:text="@string/feedBack"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_setting"
+                    style="@style/MenuStyle"
+                    android:text="@string/setting"
+                    />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/bottom_menu"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tv_about"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="25dp"
+                android:padding="12dp"
+                android:text="@string/about"
+                style="@style/both_wrap_style"
+               />
+
+
+            <TextView
+                android:id="@+id/tv_theme"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="15dp"
+                android:padding="12dp"
+                android:text="@string/theme"
+                style="@style/both_wrap_style"
+                />
+
+        </LinearLayout>
+
+    </com.booboomx.hotvideo.widget.theme.ColorRelativeLayout>
+
+
+    <com.booboomx.hotvideo.widget.theme.ColorRelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.booboomx.hotvideo.widget.UnScrollViewPager
+            android:paddingBottom="40dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <RadioGroup
+            android:background="@mipmap/bottom_bg"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tab_rg_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <RadioButton
+                android:drawableTop="@drawable/tab_02"
+                android:checked="true"
+                android:id="@+id/tab_rb_1"
+                style="@style/tab_rb_style"
+                android:text="精选"
+               />
+
+
+            <RadioButton
+                android:drawableTop="@drawable/tab_03"
+                android:checked="true"
+                android:id="@+id/tab_rb_2"
+                style="@style/tab_rb_style"
+                android:text="专题"
+                />
+            <RadioButton
+                android:drawableTop="@drawable/tab_01"
+                android:checked="true"
+                android:id="@+id/tab_rb_3"
+                style="@style/tab_rb_style"
+                android:text="发现"
+                />
+            <RadioButton
+                android:drawableTop="@drawable/tab_04"
+                android:checked="true"
+                android:id="@+id/tab_rb_4"
+                style="@style/tab_rb_style"
+                android:text="我的"
+                />
+
+        </RadioGroup>
+
+    </com.booboomx.hotvideo.widget.theme.ColorRelativeLayout>
+
+
+
+
+
+</com.booboomx.hotvideo.widget.ResideLayout>

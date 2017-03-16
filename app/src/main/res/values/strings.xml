@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">HotMovie</string>
+    <string name="collection">收藏</string>
+    <string name="downLoad">我的下载</string>
+    <string name="goodSoft">福利</string>
+    <string name="share">分享</string>
+    <string name="feedBack">建议反馈</string>
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+    <string name="theme">主题</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
