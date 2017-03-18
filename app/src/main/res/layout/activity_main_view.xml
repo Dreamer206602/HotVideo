@@ -13,7 +13,7 @@
         <LinearLayout
             android:id="@+id/top_menu"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
@@ -44,6 +44,7 @@
         </LinearLayout>
 
         <ScrollView
+            android:layout_below="@+id/top_menu"
             android:scrollbars="none"
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
@@ -67,7 +68,6 @@
                     style="@style/MenuStyle"
                     android:text="@string/downLoad"
                     />
-
 
                 <TextView
                     android:id="@+id/tv_goodSoft"
