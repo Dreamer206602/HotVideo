@@ -18,6 +18,7 @@
 
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_marginTop="55dp"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_marginLeft="25dp"
                 android:scaleType="fitXY"

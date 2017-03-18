@@ -20,8 +20,10 @@ import com.booboomx.hotvideo.ui.fragment.ClassificationFragment;
 import com.booboomx.hotvideo.ui.fragment.DIscoverFragment;
 import com.booboomx.hotvideo.ui.fragment.MineFragment;
 import com.booboomx.hotvideo.ui.fragment.RecommendFragment;
+import com.booboomx.hotvideo.utils.StringUtils;
 import com.booboomx.hotvideo.widget.ResideLayout;
 import com.booboomx.hotvideo.widget.UnScrollViewPager;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +109,16 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(fragments.size());
+
+        StringUtils.setIconDrawable(mContext,mTvCollect, MaterialDesignIconic.Icon.gmi_collection_bookmark,16,10);//收藏
+        StringUtils.setIconDrawable(mContext,mTvDownLoad, MaterialDesignIconic.Icon.gmi_download,16,10);//下载
+        StringUtils.setIconDrawable(mContext,mTvGoodSoft, MaterialDesignIconic.Icon.gmi_mood,16,10);//福利
+        StringUtils.setIconDrawable(mContext,mTvShare, MaterialDesignIconic.Icon.gmi_share,16,10);//分享
+        StringUtils.setIconDrawable(mContext,mTvFeedBack, MaterialDesignIconic.Icon.gmi_android,16,10);//反馈
+        StringUtils.setIconDrawable(mContext,mTvSetting, MaterialDesignIconic.Icon.gmi_settings,16,10);//设置
+        StringUtils.setIconDrawable(mContext,mTvAbout, MaterialDesignIconic.Icon.gmi_account,16,10);//
+        StringUtils.setIconDrawable(mContext,mTvTheme, MaterialDesignIconic.Icon.gmi_palette,16,10);//
+
 
 
     }
