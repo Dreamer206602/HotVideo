@@ -6,6 +6,7 @@
 
     <com.booboomx.hotvideo.widget.theme.ColorRelativeLayout
         android:id="@+id/menu"
+        android:background="?attr/menuBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -135,7 +136,7 @@
 
 
     <com.booboomx.hotvideo.widget.theme.ColorRelativeLayout
-
+        android:background="?attr/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -169,21 +170,18 @@
 
             <RadioButton
                 android:drawableTop="@drawable/tab_03"
-                android:checked="true"
                 android:id="@+id/tab_rb_2"
                 style="@style/tab_rb_style"
                 android:text="专题"
                 />
             <RadioButton
                 android:drawableTop="@drawable/tab_01"
-                android:checked="true"
                 android:id="@+id/tab_rb_3"
                 style="@style/tab_rb_style"
                 android:text="发现"
                 />
             <RadioButton
                 android:drawableTop="@drawable/tab_04"
-                android:checked="true"
                 android:id="@+id/tab_rb_4"
                 style="@style/tab_rb_style"
                 android:text="我的"

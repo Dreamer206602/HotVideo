@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.booboomx.hotvideo.R;
 import com.booboomx.hotvideo.base.RootView;
 import com.booboomx.hotvideo.presenter.contract.MainContract;
@@ -20,15 +21,20 @@ import com.booboomx.hotvideo.ui.fragment.ClassificationFragment;
 import com.booboomx.hotvideo.ui.fragment.DIscoverFragment;
 import com.booboomx.hotvideo.ui.fragment.MineFragment;
 import com.booboomx.hotvideo.ui.fragment.RecommendFragment;
+import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.StringUtils;
 import com.booboomx.hotvideo.widget.ResideLayout;
 import com.booboomx.hotvideo.widget.UnScrollViewPager;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by booboomx on 17/3/16.
@@ -108,17 +114,17 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
         mAdapter = new MyFragmentPagerAdapter(mActivity.getSupportFragmentManager(), fragments);
 
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setCurrentItem(0);
         mViewPager.setOffscreenPageLimit(fragments.size());
 
-        StringUtils.setIconDrawable(mContext,mTvCollect, MaterialDesignIconic.Icon.gmi_collection_bookmark,16,10);//收藏
-        StringUtils.setIconDrawable(mContext,mTvDownLoad, MaterialDesignIconic.Icon.gmi_download,16,10);//下载
-        StringUtils.setIconDrawable(mContext,mTvGoodSoft, MaterialDesignIconic.Icon.gmi_mood,16,10);//福利
-        StringUtils.setIconDrawable(mContext,mTvShare, MaterialDesignIconic.Icon.gmi_share,16,10);//分享
-        StringUtils.setIconDrawable(mContext,mTvFeedBack, MaterialDesignIconic.Icon.gmi_android,16,10);//反馈
-        StringUtils.setIconDrawable(mContext,mTvSetting, MaterialDesignIconic.Icon.gmi_settings,16,10);//设置
-        StringUtils.setIconDrawable(mContext,mTvAbout, MaterialDesignIconic.Icon.gmi_account,16,10);//
-        StringUtils.setIconDrawable(mContext,mTvTheme, MaterialDesignIconic.Icon.gmi_palette,16,10);//
-
+        StringUtils.setIconDrawable(mContext, mTvCollect, MaterialDesignIconic.Icon.gmi_collection_bookmark, 16, 10);//收藏
+        StringUtils.setIconDrawable(mContext, mTvDownLoad, MaterialDesignIconic.Icon.gmi_download, 16, 10);//下载
+        StringUtils.setIconDrawable(mContext, mTvGoodSoft, MaterialDesignIconic.Icon.gmi_mood, 16, 10);//福利
+        StringUtils.setIconDrawable(mContext, mTvShare, MaterialDesignIconic.Icon.gmi_share, 16, 10);//分享
+        StringUtils.setIconDrawable(mContext, mTvFeedBack, MaterialDesignIconic.Icon.gmi_android, 16, 10);//反馈
+        StringUtils.setIconDrawable(mContext, mTvSetting, MaterialDesignIconic.Icon.gmi_settings, 16, 10);//设置
+        StringUtils.setIconDrawable(mContext, mTvAbout, MaterialDesignIconic.Icon.gmi_account, 16, 10);//
+        StringUtils.setIconDrawable(mContext, mTvTheme, MaterialDesignIconic.Icon.gmi_palette, 16, 10);//
 
 
     }
@@ -169,6 +175,7 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
     @Override
     public void setPresenter(MainContract.Presenter presenter) {
+        mPresenter = Preconditions.checkNotNull(presenter);
 
     }
 
@@ -185,26 +192,76 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
     }
 
 
+    @OnClick({R.id.tv_collection, R.id.tv_downLoad, R.id.tv_goodSoft, R.id.tv_share, R.id.tv_feedBack, R.id.tv_setting, R.id.tv_about, R.id.tv_theme})
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.tv_collection:
+                break;
+            case R.id.tv_downLoad:
+                break;
+            case R.id.tv_goodSoft:
+                break;
+            case R.id.tv_share:
+                break;
+            case R.id.tv_feedBack:
+                break;
+            case R.id.tv_setting:
+                break;
+            case R.id.tv_about:
+                break;
+            case R.id.tv_theme:
+                setTheme("");
+                break;
+        }
+
+    }
+
+    @Subscriber()
+    public void setTheme(String content) {
+
+        new ColorChooserDialog.Builder(mActivity, R.string.theme)
+                .customColors(R.array.colors, null)
+                .doneButton(R.string.done)
+                .cancelButton(R.string.cancel)
+                .allowUserColorInput(false)
+                .allowUserColorInputAlpha(false).show();
+
+    }
+
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
 
         switch (checkedId) {
             case R.id.tab_rb_1:
-                mViewPager.setCurrentItem(0,false);
+                mViewPager.setCurrentItem(0, false);
                 break;
             case R.id.tab_rb_2:
-                mViewPager.setCurrentItem(1,false);
+                mViewPager.setCurrentItem(1, false);
                 break;
             case R.id.tab_rb_3:
-                mViewPager.setCurrentItem(2,false);
+                mViewPager.setCurrentItem(2, false);
 
                 break;
             case R.id.tab_rb_4:
-                mViewPager.setCurrentItem(3,false);
+                mViewPager.setCurrentItem(3, false);
 
                 break;
         }
 
+    }
+
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        EventBus.getDefault().unregister(this);
     }
 }
