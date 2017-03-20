@@ -22,6 +22,7 @@ import com.booboomx.hotvideo.ui.fragment.DIscoverFragment;
 import com.booboomx.hotvideo.ui.fragment.MineFragment;
 import com.booboomx.hotvideo.ui.fragment.RecommendFragment;
 import com.booboomx.hotvideo.utils.Preconditions;
+import com.booboomx.hotvideo.utils.RxUtils;
 import com.booboomx.hotvideo.utils.StringUtils;
 import com.booboomx.hotvideo.widget.ResideLayout;
 import com.booboomx.hotvideo.widget.UnScrollViewPager;
@@ -32,15 +33,21 @@ import org.simple.eventbus.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscription;
+
+import static com.booboomx.hotvideo.ui.activity.MainActivity.Banner_Stop;
 
 /**
  * Created by booboomx on 17/3/16.
  */
 
 public class MainView extends RootView<MainContract.Presenter> implements MainContract.View, RadioGroup.OnCheckedChangeListener {
+
 
     final int WAIT_TIME = 200;
     @BindView(R.id.tv_collection)
@@ -155,19 +162,50 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
         mResideLayout.setPanelSlideListener(new ResideLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
-
+                postBannerState(true);
             }
 
             @Override
             public void onPanelOpened(View panel) {
+                postBannerState(true);
+
+
 
             }
 
             @Override
             public void onPanelClosed(View panel) {
+                postBannerState(false);
+
 
             }
         });
+
+
+    }
+
+    private void postBannerState(final boolean stop) {
+
+        Subscription subscribe = Observable.timer(200, TimeUnit.MILLISECONDS)
+                .compose(RxUtils.<Long>rxSchedulerHelper())
+                .subscribe(new rx.Subscriber<Long>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        EventBus.getDefault().post(stop,Banner_Stop);
+
+                    }
+                });
+
 
 
     }

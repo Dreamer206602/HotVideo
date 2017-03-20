@@ -1,8 +1,14 @@
 package com.booboomx.hotvideo.utils;
 
+import android.text.TextUtils;
+
+import com.booboomx.hotvideo.net.VideoHttpResponse;
+import com.booboomx.hotvideo.net.exception.ApiException;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -25,6 +31,40 @@ public class RxUtils {
             }
         };
     }
+
+
+
+    public static <T> Observable.Transformer<VideoHttpResponse<T>,T>handleResult(){
+
+        return new Observable.Transformer<VideoHttpResponse<T>, T>() {
+            @Override
+            public Observable<T> call(Observable<VideoHttpResponse<T>> responseObservable) {
+
+                return responseObservable.flatMap(new Func1<VideoHttpResponse<T>, Observable<T>>() {
+                    @Override
+                    public Observable<T> call(VideoHttpResponse<T> videoHttpResponse) {
+                        if(videoHttpResponse.getCode()==200){
+                            return createData(videoHttpResponse.getRet());
+                        }else if(!TextUtils.isEmpty(videoHttpResponse.getMsg())){
+                            return Observable.error(new ApiException("*"+videoHttpResponse.getMsg()));
+
+                        }else{
+                            return Observable.error(new ApiException("*"+"服务器返回error"));
+                        }
+
+                    }
+                });
+
+            }
+        };
+
+
+    }
+
+
+
+
+
 
 
     /**

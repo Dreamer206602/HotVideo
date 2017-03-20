@@ -1,4 +1,4 @@
-package com.booboomx.hotvideo.model.net;
+package com.booboomx.hotvideo.net;
 
 /**
  * Created by booboomx on 17/3/12.

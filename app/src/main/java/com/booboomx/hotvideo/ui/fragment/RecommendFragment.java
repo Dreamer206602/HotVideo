@@ -1,30 +1,23 @@
 package com.booboomx.hotvideo.ui.fragment;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.booboomx.hotvideo.R;
+import com.booboomx.hotvideo.base.BaseFragment;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 首页精选的界面
  */
-public class RecommendFragment extends Fragment {
+public class RecommendFragment extends BaseFragment {
 
 
-    public RecommendFragment() {
-        // Required empty public constructor
+    @Override
+    public int getFragmentLayout() {
+        return R.layout.fragment_recommend;
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recommend, container, false);
+    public void lazyFetchData() {
+        super.lazyFetchData();
     }
-
 }

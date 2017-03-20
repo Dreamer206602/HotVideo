@@ -219,7 +219,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
 
     }
 
-    protected abstract void initView(LayoutInflater inflater);
+    protected  void initView(LayoutInflater inflater){
+
+    }
 
 
 }
