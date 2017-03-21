@@ -21,5 +21,7 @@
     <string name="clean">清楚</string>
     <string name="video_intro">简介</string>
     <string name="video_commtent">评论</string>
+    <string name="shrink">收起</string>
+    <string name="expand">展开</string>
 
 </resources>
