@@ -1,0 +1,63 @@
+<com.booboomx.hotvideo.widget.theme.ColorRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                        android:id="@+id/title"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="68dp"
+                                                        android:background="?attr/colorPrimary"
+                                                        android:paddingTop="20dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:layout_width="40dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/back"/>
+
+    </RelativeLayout>
+
+
+    <com.booboomx.hotvideo.widget.ColorTextView
+        android:id="@+id/title_name"
+        style="@style/title_tv_style"
+        android:layout_centerHorizontal="true"
+        android:maxLength="15"
+        android:lines="1"
+        android:maxLines="1"
+        android:textColor="?attr/md_title_color"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_collect"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/standard_x_small_margin"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/collection"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_collect_clear"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/standard_x_small_margin"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/common_tv_style"
+            android:layout_centerInParent="true"
+            android:text="@string/clean"/>
+
+    </RelativeLayout>
+
+</com.booboomx.hotvideo.widget.theme.ColorRelativeLayout>

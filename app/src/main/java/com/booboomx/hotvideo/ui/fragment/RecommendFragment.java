@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 
 import com.booboomx.hotvideo.R;
 import com.booboomx.hotvideo.base.BaseFragment;
-import com.booboomx.hotvideo.presenter.contract.RecommendPresenter;
+import com.booboomx.hotvideo.presenter.RecommendPresenter;
 import com.booboomx.hotvideo.ui.view.RecommendView;
 
 import butterknife.BindView;

@@ -7,7 +7,9 @@ package com.booboomx.hotvideo.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.booboomx.hotvideo.bean.VideoInfo;
 import com.booboomx.hotvideo.ui.activity.MainActivity;
+import com.booboomx.hotvideo.ui.activity.VideoInfoActivity;
 import com.booboomx.hotvideo.ui.activity.WelcomeActivity;
 
 /**
@@ -15,11 +17,11 @@ import com.booboomx.hotvideo.ui.activity.WelcomeActivity;
  */
 public class JumpUtil {
 
-//    public static void go2VideoInfoActivity(Context context, VideoInfo videoInfo) {
-//        Intent intent = new Intent(context, VideoInfoActivity.class);
-//        intent.putExtra("videoInfo", videoInfo);
-//        context.startActivity(intent);
-//    }
+    public static void go2VideoInfoActivity(Context context, VideoInfo videoInfo) {
+        Intent intent = new Intent(context, VideoInfoActivity.class);
+        intent.putExtra("videoInfo", videoInfo);
+        context.startActivity(intent);
+    }
 
 //    public static void go2VideoListActivity(Context context, String catalogId, String title) {
 //        Intent intent = new Intent(context, VideoListActivity.class);

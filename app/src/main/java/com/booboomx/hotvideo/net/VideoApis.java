@@ -7,6 +7,7 @@ package com.booboomx.hotvideo.net;
 import com.booboomx.hotvideo.bean.VideoRes;
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -23,6 +24,15 @@ public interface VideoApis {
      */
     @GET("homePageApi/homePage.do")
     Observable<VideoHttpResponse<VideoRes>> getHomePage();
+
+
+    /**
+     * 影片的详情
+     * @param mediaId
+     * @return
+     */
+    @GET("videoDetailApi/videoDetail.do")
+    Observable<VideoHttpResponse<VideoRes>>getVideoInfo(@Query("mediaId")String mediaId);
 
 
 

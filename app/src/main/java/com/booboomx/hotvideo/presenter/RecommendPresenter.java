@@ -1,4 +1,4 @@
-package com.booboomx.hotvideo.presenter.contract;
+package com.booboomx.hotvideo.presenter;
 
 import android.support.annotation.NonNull;
 
@@ -6,6 +6,7 @@ import com.booboomx.hotvideo.base.RxPresenter;
 import com.booboomx.hotvideo.bean.VideoRes;
 import com.booboomx.hotvideo.net.RetrofitHelper;
 import com.booboomx.hotvideo.net.VideoHttpResponse;
+import com.booboomx.hotvideo.presenter.contract.RecommendContract;
 import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.RxUtils;
 import com.booboomx.hotvideo.utils.StringUtils;
@@ -17,7 +18,7 @@ import rx.functions.Action1;
  * Created by booboomx on 17/3/19.
  */
 
-public class RecommendPresenter extends RxPresenter implements RecommendContract.Presenter{
+public class RecommendPresenter extends RxPresenter implements RecommendContract.Presenter {
 
     private RecommendContract.View mView;
     private int page=0;

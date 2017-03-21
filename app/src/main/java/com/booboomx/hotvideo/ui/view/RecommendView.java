@@ -22,6 +22,7 @@ import com.booboomx.hotvideo.ui.activity.MainActivity;
 import com.booboomx.hotvideo.ui.adapter.BannerAdapter;
 import com.booboomx.hotvideo.ui.adapter.RecommendAdapter;
 import com.booboomx.hotvideo.utils.EventUtil;
+import com.booboomx.hotvideo.utils.JumpUtil;
 import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.RxUtils;
 import com.booboomx.hotvideo.utils.ScreenUtil;
@@ -170,6 +171,8 @@ public class RecommendView extends RootView<RecommendContract.Presenter> impleme
         mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
+                JumpUtil.go2VideoInfoActivity(mContext,mAdapter.getItem(position));
 
 
             }

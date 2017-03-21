@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.booboomx.hotvideo.R;
 import com.booboomx.hotvideo.bean.VideoInfo;
 import com.booboomx.hotvideo.utils.ImageLoader;
+import com.booboomx.hotvideo.utils.JumpUtil;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class BannerAdapter extends StaticPagerAdapter {
 
 
     @Override
-    public View getView(ViewGroup container, int position) {
+    public View getView(ViewGroup container, final int position) {
 
         ImageView imageView=new ImageView(mContext);
 
@@ -66,6 +67,7 @@ public class BannerAdapter extends StaticPagerAdapter {
              @Override
              public void onClick(View v) {
 
+                 JumpUtil.go2VideoInfoActivity(mContext,mVideoInfos.get(position));
 
 
 
