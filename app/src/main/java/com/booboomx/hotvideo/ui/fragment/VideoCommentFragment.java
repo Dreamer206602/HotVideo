@@ -11,7 +11,7 @@ import com.booboomx.hotvideo.ui.view.CommentView;
 import butterknife.BindView;
 
 /**
- *评论
+ *评论的界面
  */
 public class VideoCommentFragment extends BaseFragment {
 

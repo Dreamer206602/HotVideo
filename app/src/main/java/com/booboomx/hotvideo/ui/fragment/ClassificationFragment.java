@@ -1,30 +1,39 @@
 package com.booboomx.hotvideo.ui.fragment;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.booboomx.hotvideo.R;
+import com.booboomx.hotvideo.base.BaseFragment;
+import com.booboomx.hotvideo.presenter.ClassificationPresenter;
+import com.booboomx.hotvideo.ui.view.ClassificationView;
+
+import butterknife.BindView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 专题的界面
  */
-public class ClassificationFragment extends Fragment {
+public class ClassificationFragment extends BaseFragment {
 
+    @BindView(R.id.two_view)
+    ClassificationView mView;
 
-    public ClassificationFragment() {
-        // Required empty public constructor
+    @Override
+    public int getFragmentLayout() {
+        return R.layout.fragment_classification;
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_classification, container, false);
+    protected void initView(LayoutInflater inflater) {
+        super.initView(inflater);
+
+        mPresenter=new ClassificationPresenter(mView);
     }
 
+    @Override
+    public void lazyFetchData() {
+        super.lazyFetchData();
+        ((ClassificationPresenter)mPresenter).refresh();
+    }
 }
