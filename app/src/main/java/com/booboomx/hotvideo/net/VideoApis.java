@@ -35,8 +35,16 @@ public interface VideoApis {
     Observable<VideoHttpResponse<VideoRes>>getVideoInfo(@Query("mediaId")String mediaId);
 
 
-
-
+    /**
+     * 获取评论的列表
+     * @param mediaId
+     * @param pnum
+     * @return
+     */
+    @GET("Commentary/getCommentList.do")
+    Observable<VideoHttpResponse<VideoRes>>
+    getCommentList(@Query("mediaId")String mediaId,
+                   @Query("pnum")String pnum);
 
 
 

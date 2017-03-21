@@ -108,6 +108,11 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
                     public void onCompleted() {
                         Log.i(TAG, "onCompleted: ");
 
+                        if(mView.isActive()){
+                            mView.hideLoading();
+                        }
+
+
                     }
 
                     @Override
@@ -119,17 +124,15 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
                             mView.showError("数据加载失败");
                         }
 
-
-
                     }
 
                     @Override
                     public void onNext(VideoRes videoRes) {
                         Log.i(TAG, "onNext: "+videoRes.getVideoUrl());
 
-                        if (videoRes != null) {
-
+                        if (videoRes.list!=null&&videoRes.list.size()>0) {
                             if(mView.isActive()){
+                                mView.hideLoading();
                                 mView.showContent(videoRes);
                                 result=videoRes;
                                 postData();
