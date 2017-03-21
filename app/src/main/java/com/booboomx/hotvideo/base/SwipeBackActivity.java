@@ -28,6 +28,9 @@ public  abstract class SwipeBackActivity extends BaseActivity {
         layout = (SwipeBackLayout) LayoutInflater.from(this).inflate(
                 R.layout.base, null);
         layout.attachToActivity(this);
+
+
+
     }
 
     @Override

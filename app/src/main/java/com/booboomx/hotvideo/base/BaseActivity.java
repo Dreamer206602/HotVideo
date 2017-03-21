@@ -13,6 +13,8 @@ import com.booboomx.hotvideo.R;
 import com.booboomx.hotvideo.app.App;
 import com.booboomx.hotvideo.utils.KL;
 import com.booboomx.hotvideo.utils.PreUtils;
+import com.booboomx.hotvideo.utils.ScreenUtil;
+import com.booboomx.hotvideo.widget.theme.ColorRelativeLayout;
 import com.booboomx.hotvideo.widget.theme.Theme;
 
 import butterknife.Unbinder;
@@ -28,7 +30,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
     protected Unbinder mUnBinder;
     public T mPresenter;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
 
 
     public void init() {
-
         setTranslucentStatus(true);
         onPreCreate();
         App.getInstance().registerActivities(this);
@@ -192,7 +192,19 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
 
     }
 
-    private void setTitleHeight(View rootView) {
+    private void setTitleHeight(View view) {
+
+        if (view != null) {
+            ColorRelativeLayout title = (ColorRelativeLayout) view.findViewById(R.id.title);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+                if (title != null) {
+                    ViewGroup.LayoutParams lp = title.getLayoutParams();
+                    lp.height = ScreenUtil.dip2px(this, 48);
+                    title.setLayoutParams(lp);
+                    title.setPadding(0, 0, 0, 0);
+                }
+            }
+        }
 
 
     }
