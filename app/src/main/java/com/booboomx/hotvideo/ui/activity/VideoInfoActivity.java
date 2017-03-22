@@ -1,7 +1,5 @@
 package com.booboomx.hotvideo.ui.activity;
 
-import android.os.Bundle;
-
 import com.booboomx.hotvideo.R;
 import com.booboomx.hotvideo.base.SwipeBackActivity;
 import com.booboomx.hotvideo.bean.VideoInfo;
@@ -9,7 +7,6 @@ import com.booboomx.hotvideo.presenter.VideoInfoPresenter;
 import com.booboomx.hotvideo.ui.view.VideoInfoView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 public class VideoInfoActivity extends SwipeBackActivity {
@@ -18,16 +15,16 @@ public class VideoInfoActivity extends SwipeBackActivity {
     @BindView(R.id.view_info_view)
     VideoInfoView mVideoInfoView;
 
-
+    @Override
+    protected int setLayoutResourceID() {
+        return R.layout.activity_video_info;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_info);
-        mUnBinder= ButterKnife.bind(this);
-
+    protected void onBaseCreate() {
         getIntentData();
         mPresenter=new VideoInfoPresenter(mVideoInfoView,mVideoInfo);
+
     }
 
     private void getIntentData() {

@@ -10,6 +10,7 @@ import android.content.Intent;
 import com.booboomx.hotvideo.bean.VideoInfo;
 import com.booboomx.hotvideo.ui.activity.MainActivity;
 import com.booboomx.hotvideo.ui.activity.VideoInfoActivity;
+import com.booboomx.hotvideo.ui.activity.VideoListActivity;
 import com.booboomx.hotvideo.ui.activity.WelcomeActivity;
 
 /**
@@ -23,12 +24,12 @@ public class JumpUtil {
         context.startActivity(intent);
     }
 
-//    public static void go2VideoListActivity(Context context, String catalogId, String title) {
-//        Intent intent = new Intent(context, VideoListActivity.class);
-//        intent.putExtra("catalogId", catalogId);
-//        intent.putExtra("title", title);
-//        context.startActivity(intent);
-//    }
+    public static void go2VideoListActivity(Context context, String catalogId, String title) {
+        Intent intent = new Intent(context, VideoListActivity.class);
+        intent.putExtra("catalogId", catalogId);
+        intent.putExtra("title", title);
+        context.startActivity(intent);
+    }
 //    public static void go2VideoListSearchActivity(Context context, String searchStr,String title) {
 //        Intent intent = new Intent(context, VideoListActivity.class);
 //        intent.putExtra("searchStr", searchStr);

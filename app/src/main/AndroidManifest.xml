@@ -39,11 +39,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.activity.VideoInfoActivity"
-                  android:theme="@style/CustomTransparent"
-            >
+        <activity
+            android:name=".ui.activity.VideoInfoActivity"
+            android:theme="@style/CustomTransparent">
         </activity>
+
+        <activity android:name=".ui.activity.VideoListActivity"
+                  android:theme="@style/CustomTransparent"
+           />
     </application>
 
 </manifest>

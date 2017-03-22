@@ -32,14 +32,12 @@ public class Welcome2Activity extends AppCompatActivity {
         mWowSplashView.setOnEndListener(new WowSplashView.OnEndListener() {
             @Override
             public void onEnd(WowSplashView wowSplashView) {
-
                 mWowSplashView.setVisibility(View.GONE);
                 mWowView.setVisibility(View.VISIBLE);
-
                 mWowView.startAnimate(mWowSplashView.getDrawingCache());
 
                 JumpUtil.go2MainActivity(Welcome2Activity.this);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
 
             }

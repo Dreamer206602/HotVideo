@@ -27,7 +27,7 @@ public class WowSplashView extends View {
     private Path mTowerDst;
     private Paint mPaint;
     private boolean isAnimateEnd;
-    private String mTitle = "AndroidWing";
+    private String mTitle = "La Tour Eiffel";// 法语 埃菲尔铁塔
 
     public static final float SCALE = 2f;
     public static float translateX;
@@ -285,7 +285,7 @@ public class WowSplashView extends View {
 
             }
         });
-        va.setDuration(500);
+        va.setDuration(100);
         return va;
     }
 

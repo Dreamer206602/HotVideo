@@ -16,8 +16,10 @@ import com.booboomx.hotvideo.bean.VideoRes;
 import com.booboomx.hotvideo.presenter.contract.ClassificationContract;
 import com.booboomx.hotvideo.ui.adapter.ClassificationAdapter;
 import com.booboomx.hotvideo.utils.EventUtil;
+import com.booboomx.hotvideo.utils.JumpUtil;
 import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.ScreenUtil;
+import com.booboomx.hotvideo.utils.StringUtils;
 import com.booboomx.hotvideo.widget.ColorTextView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -155,6 +157,7 @@ public class ClassificationView extends RootView<ClassificationContract.Presente
             @Override
             public void onItemClick(int position) {
 
+                JumpUtil.go2VideoListActivity(getContext(), StringUtils.getCatalogId(mAdapter.getItem(position).moreURL),mAdapter.getItem(position).title);
 
             }
         });
