@@ -26,7 +26,7 @@ public class WowView extends View {
     private float mScale;
     private PorterDuffXfermode mMode = new PorterDuffXfermode(PorterDuff.Mode.DST_OUT);
     private Paint mPaint;
-    private long mDuration = 2000;
+    private long mDuration = 1000;
 
     public WowView(Context context) {
         this(context, null);

@@ -35,7 +35,7 @@ import butterknife.OnClick;
  * Created by booboomx on 17/3/22.
  */
 
-public class VideoListView extends RootView<VideoListContract.Presenter> implements VideoListContract.View,VideoListAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+public class VideoListView extends RootView<VideoListContract.Presenter> implements VideoListContract.View, VideoListAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerView)
     EasyRecyclerView mRecyclerView;
@@ -48,7 +48,7 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
     private VideoListAdapter mAdapter;
 
     private VideoInfo mVideoInfo;
-    private int pageSize=30;
+    private int pageSize = 30;
 
     public VideoListView(Context context) {
         super(context);
@@ -60,13 +60,13 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
 
     @Override
     public void setPresenter(VideoListContract.Presenter presenter) {
-        mPresenter= Preconditions.checkNotNull(presenter);
+        mPresenter = Preconditions.checkNotNull(presenter);
 
     }
 
     @Override
     public void showError(String msg) {
-        EventUtil.showToast(getContext(),msg);
+        EventUtil.showToast(getContext(), msg);
 
     }
 
@@ -86,7 +86,7 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
     @Override
     public void refreshFail(String msg) {
 
-        if(!TextUtils.isEmpty(msg)){
+        if (!TextUtils.isEmpty(msg)) {
             showError(msg);
         }
 
@@ -95,7 +95,7 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
 
     @Override
     public void loadMoreFail(String msg) {
-        if(!TextUtils.isEmpty(msg)){
+        if (!TextUtils.isEmpty(msg)) {
             showError(msg);
         }
 
@@ -106,9 +106,8 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
     public void showContent(List<VideoType> list) {
 
         mAdapter.clear();
-        if(list!=null&&list.size()>0){
+        if (list != null && list.size() < pageSize) {
             clearFooter();
-
         }
         mAdapter.addAll(list);
 
@@ -116,7 +115,7 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
 
     private void clearFooter() {
 
-        mAdapter.setMore(new View(mContext),this);
+        mAdapter.setMore(new View(mContext), this);
         mAdapter.setError(new View(mContext));
         mAdapter.setNoMore(new View(mContext));
 
@@ -130,27 +129,27 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
 
     @Override
     protected void getLayout() {
-        inflate(getContext(), R.layout.activity_video_list_view,this);
+        inflate(getContext(), R.layout.activity_video_list_view, this);
 
     }
 
     @Override
     protected void initView() {
 
-        mRecyclerView.setAdapterWithProgress(mAdapter=new VideoListAdapter(getContext()));
+        mRecyclerView.setAdapterWithProgress(mAdapter = new VideoListAdapter(getContext()));
 
         mRecyclerView.setErrorView(R.layout.view_error);
 
-        mAdapter.setMore(R.layout.view_more,this);
+        mAdapter.setMore(R.layout.view_more, this);
 
         mAdapter.setNoMore(R.layout.view_no_more);
 
-        GridLayoutManager manager=new GridLayoutManager(getContext(),3);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
         manager.setSpanSizeLookup(mAdapter.obtainGridSpanSizeLookUp(3));
 
         mRecyclerView.setLayoutManager(manager);
 
-        SpaceDecoration spaceDecoration=new SpaceDecoration(ScreenUtil.dip2px(getContext(),8));
+        SpaceDecoration spaceDecoration = new SpaceDecoration(ScreenUtil.dip2px(getContext(), 8));
         spaceDecoration.setPaddingHeaderFooter(false);
         spaceDecoration.setPaddingStart(true);
         spaceDecoration.setPaddingEdgeSide(true);
@@ -168,7 +167,7 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
             @Override
             public void onClick(View v) {
 
-                if(EventUtil.isFastDoubleClick()){
+                if (EventUtil.isFastDoubleClick()) {
                     mRecyclerView.scrollToPosition(0);
                 }
 
@@ -182,8 +181,8 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
             @Override
             public void onItemClick(int position) {
 
-                mVideoInfo= BeanUtil.VideoType2VideoInfo(mAdapter.getItem(position),mVideoInfo);
-                JumpUtil.go2VideoInfoActivity(getContext(),mVideoInfo);
+                mVideoInfo = BeanUtil.VideoType2VideoInfo(mAdapter.getItem(position), mVideoInfo);
+                JumpUtil.go2VideoInfoActivity(getContext(), mVideoInfo);
 
             }
         });
@@ -208,9 +207,9 @@ public class VideoListView extends RootView<VideoListContract.Presenter> impleme
 
 
     @OnClick(R.id.rl_back)
-    public void back(){
-        if(mContext instanceof VideoListActivity){
-            ((VideoListActivity)mContext).finish();
+    public void back() {
+        if (mContext instanceof VideoListActivity) {
+            ((VideoListActivity) mContext).finish();
         }
     }
 
