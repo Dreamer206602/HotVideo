@@ -18,7 +18,7 @@ import com.booboomx.hotvideo.presenter.contract.MainContract;
 import com.booboomx.hotvideo.ui.activity.MainActivity;
 import com.booboomx.hotvideo.ui.adapter.MyFragmentPagerAdapter;
 import com.booboomx.hotvideo.ui.fragment.ClassificationFragment;
-import com.booboomx.hotvideo.ui.fragment.DIscoverFragment;
+import com.booboomx.hotvideo.ui.fragment.DiscoverFragment;
 import com.booboomx.hotvideo.ui.fragment.MineFragment;
 import com.booboomx.hotvideo.ui.fragment.RecommendFragment;
 import com.booboomx.hotvideo.utils.Preconditions;
@@ -105,7 +105,7 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new RecommendFragment());
         fragments.add(new ClassificationFragment());
-        fragments.add(new DIscoverFragment());
+        fragments.add(new DiscoverFragment());
         fragments.add(new MineFragment());
 
         return fragments;
