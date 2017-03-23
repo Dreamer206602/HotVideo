@@ -23,5 +23,10 @@
     <string name="video_commtent">评论</string>
     <string name="shrink">收起</string>
     <string name="expand">展开</string>
+    <string name="my_record">历史</string>
+    <string name="my_down">缓存</string>
+    <string name="my_collection">收藏</string>
+    <string name="my_them">主题</string>
+    <string name="mine">我的</string>
 
 </resources>

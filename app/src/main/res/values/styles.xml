@@ -17,6 +17,20 @@
 
 
 
+    <style name="mine_lin_style" parent="lmatch_hwrap_style">
+        <item name="android:padding">13dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+
+
+    <style name="ActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+    </style>
+
+
+
 
     <style name="both_wrap_style">
         <item name="android:layout_width">wrap_content</item>

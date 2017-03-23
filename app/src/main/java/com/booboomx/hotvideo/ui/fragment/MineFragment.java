@@ -1,27 +1,37 @@
 package com.booboomx.hotvideo.ui.fragment;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.booboomx.hotvideo.R;
+import com.booboomx.hotvideo.base.BaseFragment;
+import com.booboomx.hotvideo.presenter.MinePresenter;
+import com.booboomx.hotvideo.ui.view.MineView;
+
+import butterknife.BindView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 我的界面
  */
-public class MineFragment extends Fragment {
+public class MineFragment extends BaseFragment {
 
-
-
+    public static final String SET_THEME = "SET_THEME";
+    @BindView(R.id.mine_view)
+    MineView mView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mine, container, false);
+    public int getFragmentLayout() {
+        return R.layout.fragment_mine;
     }
 
+    @Override
+    protected void initView(LayoutInflater inflater) {
+        super.initView(inflater);
+    }
+
+    @Override
+    public void lazyFetchData() {
+        super.lazyFetchData();
+        mPresenter=new MinePresenter(mView);
+    }
 }
