@@ -255,7 +255,7 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
     }
 
-    @Subscriber()
+    @Subscriber(tag = MineFragment.SET_THEME)
     public void setTheme(String content) {
 
         new ColorChooserDialog.Builder(mActivity, R.string.theme)
@@ -263,7 +263,8 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
                 .doneButton(R.string.done)
                 .cancelButton(R.string.cancel)
                 .allowUserColorInput(false)
-                .allowUserColorInputAlpha(false).show();
+                .allowUserColorInputAlpha(false)
+                .show();
 
     }
 
@@ -288,6 +289,11 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
                 break;
         }
 
+    }
+
+
+    public ResideLayout getResideLayout() {
+        return mResideLayout;
     }
 
 

@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.booboomx.hotvideo.R;
+import com.booboomx.hotvideo.app.App;
 import com.booboomx.hotvideo.app.Constants;
 import com.booboomx.hotvideo.base.BaseActivity;
 import com.booboomx.hotvideo.ui.view.MainView;
+import com.booboomx.hotvideo.utils.EventUtil;
 import com.booboomx.hotvideo.utils.PreUtils;
 import com.booboomx.hotvideo.utils.ThemeUtils;
 import com.booboomx.hotvideo.widget.theme.Theme;
@@ -45,6 +47,22 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if(mMainView.getResideLayout().isOpen()){
+            mMainView.getResideLayout().closePane();
+        }else{
+
+            long secondTime = System.currentTimeMillis();
+            if(secondTime-firstTime>1500){
+                EventUtil.showToast(this,"再按一次退出");
+                firstTime=secondTime;
+            }else{
+                App.getInstance().exitApp();
+            }
+
+
+        }
+
+
 
     }
 

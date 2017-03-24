@@ -1,10 +1,12 @@
 package com.booboomx.hotvideo.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,6 +15,10 @@ import com.booboomx.hotvideo.base.RootView;
 import com.booboomx.hotvideo.bean.VideoInfo;
 import com.booboomx.hotvideo.bean.VideoType;
 import com.booboomx.hotvideo.presenter.contract.MineContract;
+import com.booboomx.hotvideo.ui.activity.CollectionActivity;
+import com.booboomx.hotvideo.ui.activity.HistoryActivity;
+import com.booboomx.hotvideo.ui.activity.SettingActivity;
+import com.booboomx.hotvideo.ui.fragment.MineFragment;
 import com.booboomx.hotvideo.utils.EventUtil;
 import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.StringUtils;
@@ -25,6 +31,7 @@ import org.simple.eventbus.EventBus;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.booboomx.hotvideo.R.id.recyclerView;
 
@@ -126,5 +133,26 @@ public class MineView extends RootView<MineContract.Presenter>implements MineCon
         EventBus.getDefault().unregister(this);
         super.onDetachedFromWindow();
 
+    }
+
+    @OnClick({R.id.rl_record, R.id.rl_down, R.id.rl_collection, R.id.rl_them, R.id.img_setting})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.rl_record:
+                getContext().startActivity(new Intent(mContext, HistoryActivity.class));
+                break;
+            case R.id.rl_down:
+                EventUtil.showToast(getContext(), "敬请期待");
+                break;
+            case R.id.rl_collection:
+                getContext().startActivity(new Intent(mContext, CollectionActivity.class));
+                break;
+            case R.id.rl_them:
+                EventBus.getDefault().post("", MineFragment.SET_THEME);
+                break;
+            case R.id.img_setting:
+                getContext().startActivity(new Intent(mContext, SettingActivity.class));
+                break;
+        }
     }
 }
