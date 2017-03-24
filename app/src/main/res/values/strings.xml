@@ -30,5 +30,13 @@
     <string name="mine">我的</string>
     <string name="search_history">搜索记录</string>
     <string name="search_recommend">热门推荐</string>
+    <string name="setting_recommend">推荐给好友</string>
+    <string name="feedback">建议反馈</string>
+    <string name="setting_recommend_clear">清理缓存</string>
+    <string name="setting_recommend_content">发现一个看片神器\\n\\nhttps://github.com/Dreamer206602/HotVideo</string>
+    <string name="close">关闭</string>
+    <string name="setting_recommend_copy">复制</string>
+    <string name="about_me">\n博 客：<a href="http://www.jianshu.com/u/c9f7daba2092">李福来</a>\n\nGithub：<a href="https://github.com/Dreamer206602/HotVideo">HotVideo</a></string>
+    <string name="setting_recommend_url">https://github.com/Dreamer206602/HotVideo</string>
 
 </resources>

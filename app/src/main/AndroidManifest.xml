@@ -2,15 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.booboomx.hotvideo">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
+
+
+    <!-- 必选-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络通信-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />  <!-- 获取设备信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取MAC地址-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 读写sdcard，storage等等 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 允许程序录制音频 -->
+
+    <!-- 可选-->
+    <uses-permission android:name="android.permission.READ_LOGS" /> <!-- 获取logcat日志 -->
 
     <application
         android:name=".app.App"
@@ -50,12 +55,24 @@
         <activity
             android:name=".ui.activity.SearchActivity"
             android:theme="@style/CustomTransparent"/>
-        <activity android:name=".ui.activity.HistoryActivity">
+        <activity android:name=".ui.activity.HistoryActivity"
+                  android:theme="@style/CustomTransparent"
+            >
         </activity>
-        <activity android:name=".ui.activity.CollectionActivity">
+        <activity android:name=".ui.activity.CollectionActivity"
+                  android:theme="@style/CustomTransparent"
+            >
         </activity>
-        <activity android:name=".ui.activity.SettingActivity">
-        </activity>
+        <activity android:name=".ui.activity.SettingActivity"
+                  android:theme="@style/CustomTransparent"
+            />
+
+
+        <!-- 蒲公英 必选-->
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="659799680dd5e2c22ddb6e44b20554ed" >
+        </meta-data>
     </application>
 
 </manifest>

@@ -1,10 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.booboomx.hotvideo.ui.activity.SettingActivity">
+<com.booboomx.hotvideo.widget.theme.ColorLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                      style="@style/both_match_style"
+                                                      android:background="?attr/background"
+                                                      android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/common_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_recommend"
+        style="@style/settingItemStyle">
+
+        <TextView
+            style="@style/settingItemTvStyle"
+            android:text="@string/setting_recommend" />
+
+        <ImageView style="@style/settingItemImgStyle" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_clearcache"
+        style="@style/settingItemLittleMarginStyle">
+
+        <TextView
+            style="@style/settingItemTvStyle"
+            android:text="@string/setting_recommend_clear" />
+
+        <TextView
+            android:id="@+id/tv_cache"
+            style="@style/both_wrap_style"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="0kb"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_about"
+        style="@style/settingItemStyle">
+
+        <TextView
+            style="@style/settingItemTvStyle"
+            android:text="@string/about" />
+
+        <ImageView style="@style/settingItemImgStyle" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_feedback"
+        style="@style/settingItemLittleMarginStyle">
+
+        <TextView
+            style="@style/settingItemTvStyle"
+            android:text="@string/feedback" />
+
+        <ImageView style="@style/settingItemImgStyle" />
+    </RelativeLayout>
+
+</com.booboomx.hotvideo.widget.theme.ColorLinearLayout>

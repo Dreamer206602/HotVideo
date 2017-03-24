@@ -5,7 +5,6 @@ package com.booboomx.hotvideo.base;
  */
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
@@ -34,30 +33,12 @@ public  abstract class SwipeBackActivity extends BaseActivity {
         mUnBinder= ButterKnife.bind(this);
         onBaseCreate();
 
-
-
-
     }
 
 
     protected abstract int setLayoutResourceID();
     protected abstract void onBaseCreate();
 
-    @Override
-    public void startActivity(Intent intent) {
-        super.startActivity(intent);
-//        overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
-    }
-
-
-
-
-    // Press the back button in mobile phone
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-//        overridePendingTransition(0, R.anim.base_slide_right_out);
-    }
 
 
 }
