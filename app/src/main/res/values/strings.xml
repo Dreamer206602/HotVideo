@@ -28,5 +28,7 @@
     <string name="my_collection">收藏</string>
     <string name="my_them">主题</string>
     <string name="mine">我的</string>
+    <string name="search_history">搜索记录</string>
+    <string name="search_recommend">热门推荐</string>
 
 </resources>

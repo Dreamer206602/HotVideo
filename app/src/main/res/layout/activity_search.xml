@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.booboomx.hotvideo.ui.activity.SearchActivity">
+
+
+    <com.booboomx.hotvideo.ui.view.SearchVideoListView
+        style="@style/both_match_style"
+        android:id="@+id/search_video_info_view"
+
+        />
+
+
+</merge>

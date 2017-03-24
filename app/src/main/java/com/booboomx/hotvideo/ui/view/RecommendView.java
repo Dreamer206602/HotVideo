@@ -1,6 +1,7 @@
 package com.booboomx.hotvideo.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.booboomx.hotvideo.bean.VideoInfo;
 import com.booboomx.hotvideo.bean.VideoRes;
 import com.booboomx.hotvideo.presenter.contract.RecommendContract;
 import com.booboomx.hotvideo.ui.activity.MainActivity;
+import com.booboomx.hotvideo.ui.activity.SearchActivity;
 import com.booboomx.hotvideo.ui.adapter.BannerAdapter;
 import com.booboomx.hotvideo.ui.adapter.RecommendAdapter;
 import com.booboomx.hotvideo.utils.EventUtil;
@@ -37,6 +39,7 @@ import com.jude.rollviewpager.hintview.IconHintView;
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -329,8 +332,9 @@ public class RecommendView extends RootView<RecommendContract.Presenter> impleme
 
         switch (v.getId()){
             case R.id.rlGoSearch:
-
-
+                Intent intent=new Intent(mContext, SearchActivity.class);
+                intent.putExtra("recommend", (Serializable) recommend);
+                mContext.startActivity(intent);
                 break;
         }
 

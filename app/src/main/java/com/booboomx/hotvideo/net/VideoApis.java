@@ -57,4 +57,11 @@ public interface VideoApis {
 
 
 
+    @GET("searchKeyWordApi/getVideoListByKeyWord.do")
+    Observable<VideoHttpResponse<VideoRes>>getVideoListByKeyWord(@Query("keyword")String keyword,@Query("pnum")String pnum);
+
+
+
+
+
 }
