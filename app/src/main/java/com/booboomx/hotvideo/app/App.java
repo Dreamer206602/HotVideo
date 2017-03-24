@@ -3,8 +3,14 @@ package com.booboomx.hotvideo.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.booboomx.hotvideo.db.RealmHelper;
+
 import java.util.HashSet;
 import java.util.Set;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.rx.RealmObservableFactory;
 
 /**
  * Created by booboomx on 17/2/28.
@@ -25,6 +31,22 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance=this;
+
+
+        initRealm();
+
+
+    }
+
+    private void initRealm() {
+
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
+                .name(RealmHelper.DB_NAME)
+                .schemaVersion(1)
+                .rxFactory(new RealmObservableFactory())
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(realmConfiguration);
 
 
     }

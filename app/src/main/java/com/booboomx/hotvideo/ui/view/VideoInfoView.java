@@ -16,6 +16,7 @@ import com.booboomx.hotvideo.presenter.contract.VideoInfoContract;
 import com.booboomx.hotvideo.ui.activity.VideoInfoActivity;
 import com.booboomx.hotvideo.ui.fragment.VideoCommentFragment;
 import com.booboomx.hotvideo.ui.fragment.VideoIntroFragment;
+import com.booboomx.hotvideo.utils.EventUtil;
 import com.booboomx.hotvideo.utils.ImageLoader;
 import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.widget.ColorTextView;
@@ -78,6 +79,8 @@ public class VideoInfoView extends RootView<VideoInfoContract.Presenter>implemen
 
     @Override
     public void showError(String msg) {
+
+        EventUtil.showToast(getContext(),msg);
 
     }
 
@@ -176,6 +179,14 @@ public class VideoInfoView extends RootView<VideoInfoContract.Presenter>implemen
             ((VideoInfoActivity) mContext).finish();
         }
 
+    }
+
+    @OnClick(R.id.rl_collect)
+    public void onClick() {
+        if (mVideoRes != null) {
+            mIvCollect.startAnimation(mAnimation);
+            mPresenter.collect();
+        }
     }
 
     @Override

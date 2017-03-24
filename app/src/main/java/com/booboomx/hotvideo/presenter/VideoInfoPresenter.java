@@ -6,6 +6,9 @@ import android.util.Log;
 import com.booboomx.hotvideo.base.RxPresenter;
 import com.booboomx.hotvideo.bean.VideoInfo;
 import com.booboomx.hotvideo.bean.VideoRes;
+import com.booboomx.hotvideo.bean.db.Collection;
+import com.booboomx.hotvideo.bean.db.Record;
+import com.booboomx.hotvideo.db.RealmHelper;
 import com.booboomx.hotvideo.net.RetrofitHelper;
 import com.booboomx.hotvideo.net.VideoHttpResponse;
 import com.booboomx.hotvideo.presenter.contract.VideoInfoContract;
@@ -28,7 +31,7 @@ import rx.functions.Action1;
 
 public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract.Presenter {
 
-    public static final String TAG="VideoInfoPresenter";
+    public static final String TAG = "VideoInfoPresenter";
 
     public final static String Refresh_Video_Info = "Refresh_Video_Info";
     public final static String Put_DataId = "Put_DataId";
@@ -40,19 +43,18 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
     String pic = "";
 
 
-
     @NonNull
-    final  VideoInfoContract.View mView;
+    final VideoInfoContract.View mView;
 
     public VideoInfoPresenter(@NonNull VideoInfoContract.View addTaskView, VideoInfo videoInfo) {
         mView = Preconditions.checkNotNull(addTaskView);
         mView.setPresenter(this);
 
-        mView.showContent(BeanUtil.VideoInfo2VideoRes(videoInfo,null));
+        mView.showContent(BeanUtil.VideoInfo2VideoRes(videoInfo, null));
 
 
-        this.dataId=videoInfo.dataId;
-        this.pic=videoInfo.pic;
+        this.dataId = videoInfo.dataId;
+        this.pic = videoInfo.pic;
         getDetailData(videoInfo.dataId);
 
         setCollectState();
@@ -62,14 +64,13 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
     private void putMediaId() {
 
 
-
-        Subscription subscription= Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
+        Subscription subscription = Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
                 .compose(RxUtils.<Long>rxSchedulerHelper())
                 .subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long aLong) {
 
-                        EventBus.getDefault().post(dataId,Put_DataId);
+                        EventBus.getDefault().post(dataId, Put_DataId);
 
                     }
                 }, new Action1<Throwable>() {
@@ -81,19 +82,14 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
         addSubscribe(subscription);
 
 
-
-
-
-
     }
-
 
 
     @Override
     public void getDetailData(String dataId) {
 
 
-        Subscription subscription= RetrofitHelper.getVideoApis().getVideoInfo(dataId)
+        Subscription subscription = RetrofitHelper.getVideoApis().getVideoInfo(dataId)
                 .compose(RxUtils.<VideoHttpResponse<VideoRes>>rxSchedulerHelper())
                 .compose(RxUtils.<VideoRes>handleResult())
                 .subscribe(new Subscriber<VideoRes>() {
@@ -108,7 +104,7 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
                     public void onCompleted() {
                         Log.i(TAG, "onCompleted: ");
 
-                        if(mView.isActive()){
+                        if (mView.isActive()) {
                             mView.hideLoading();
                         }
 
@@ -117,9 +113,9 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i(TAG, "onError: "+e.getMessage());
+                        Log.i(TAG, "onError: " + e.getMessage());
 
-                        if(mView.isActive()){
+                        if (mView.isActive()) {
                             mView.hideLoading();
                             mView.showError("数据加载失败");
                         }
@@ -128,13 +124,13 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
 
                     @Override
                     public void onNext(VideoRes videoRes) {
-                        Log.i(TAG, "onNext: "+videoRes.getVideoUrl());
+                        Log.i(TAG, "onNext: " + videoRes.getVideoUrl());
 
-                        if (videoRes.list!=null&&videoRes.list.size()>0) {
-                            if(mView.isActive()){
+                        if (videoRes.list != null && videoRes.list.size() > 0) {
+                            if (mView.isActive()) {
                                 mView.hideLoading();
                                 mView.showContent(videoRes);
-                                result=videoRes;
+                                result = videoRes;
                                 postData();
 
                                 //存进数据库
@@ -150,20 +146,63 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
         addSubscribe(subscription);
 
 
-
-
-
     }
 
     private void postData() {
 
-        Subscription subscription= Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
+        Subscription subscription = Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
                 .compose(RxUtils.<Long>rxSchedulerHelper())
                 .subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long aLong) {
 
-                        EventBus.getDefault().post(result,Refresh_Video_Info);
+                        EventBus.getDefault().post(result, Refresh_Video_Info);
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                    }
+                });
+        addSubscribe(subscription);
+
+
+    }
+
+    @Override
+    public void collect() {
+
+        if (RealmHelper.getInstance().queryCollectionId(dataId)) {
+            RealmHelper.getInstance().deleteCollection(dataId);
+
+            mView.disCollect();
+
+
+        } else {
+
+            if (result != null) {
+                Collection collection = new Collection();
+                collection.setId(String.valueOf(dataId));
+                collection.setPic(pic);
+                collection.setTitle(result.title);
+                collection.setAirTime(result.airTime);
+                collection.setScore(result.score);
+                collection.setTime(System.currentTimeMillis());
+
+                RealmHelper.getInstance().insertCollection(collection);
+                mView.collected();
+            }
+
+        }
+
+        //刷新收藏列表
+        Subscription subscription=Observable.timer(WAIT_TIME,TimeUnit.MILLISECONDS)
+                .compose(RxUtils.<Long>rxSchedulerHelper())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        EventBus.getDefault().post("",Refresh_Collection_List);
 
                     }
                 }, new Action1<Throwable>() {
@@ -176,24 +215,57 @@ public class VideoInfoPresenter extends RxPresenter implements VideoInfoContract
 
 
 
-
-    }
-
-    @Override
-    public void collect() {
-
     }
 
     @Override
     public void insertRecord() {
 
+        if(!RealmHelper.getInstance().queryCollectionId(dataId)){
+
+            if(result!=null){
+
+                Record record=new Record();
+                record.setId(String.valueOf(dataId));
+                record.setPic(pic);
+                record.setTitle(result.title);
+                record.setTime(System.currentTimeMillis());
+                RealmHelper.getInstance().insertRecord(record,MinePresenter.maxSize);
+
+
+                //刷新收藏的列表
+                Subscription subscription=Observable.timer(WAIT_TIME,TimeUnit.MILLISECONDS)
+                        .compose(RxUtils.<Long>rxSchedulerHelper())
+                        .subscribe(new Action1<Long>() {
+                            @Override
+                            public void call(Long aLong) {
+
+                                EventBus.getDefault().post("",Refresh_History_List);
+
+                            }
+                        }, new Action1<Throwable>() {
+                            @Override
+                            public void call(Throwable throwable) {
+
+                            }
+                        });
+                addSubscribe(subscription);
+
+            }
+
+        }
+
+
+
     }
 
 
-
     private void setCollectState() {
+        if (RealmHelper.getInstance().queryCollectionId(dataId)) {
 
-
+            mView.collected();
+        } else {
+            mView.disCollect();
+        }
 
 
     }

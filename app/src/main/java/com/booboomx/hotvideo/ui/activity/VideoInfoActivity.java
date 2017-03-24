@@ -9,6 +9,9 @@ import com.booboomx.hotvideo.ui.view.VideoInfoView;
 import butterknife.BindView;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
+/**
+ * 视频播放的界面
+ */
 public class VideoInfoActivity extends SwipeBackActivity {
 
     VideoInfo mVideoInfo;
