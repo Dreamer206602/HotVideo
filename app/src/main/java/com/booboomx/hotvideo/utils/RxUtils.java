@@ -2,6 +2,7 @@ package com.booboomx.hotvideo.utils;
 
 import android.text.TextUtils;
 
+import com.booboomx.hotvideo.net.GankHttpResponse;
 import com.booboomx.hotvideo.net.VideoHttpResponse;
 import com.booboomx.hotvideo.net.exception.ApiException;
 
@@ -33,7 +34,11 @@ public class RxUtils {
     }
 
 
-
+    /**
+     * 统一结果处理
+     * @param <T>
+     * @return
+     */
     public static <T> Observable.Transformer<VideoHttpResponse<T>,T>handleResult(){
 
         return new Observable.Transformer<VideoHttpResponse<T>, T>() {
@@ -60,6 +65,28 @@ public class RxUtils {
 
 
     }
+
+
+    public static <T> Observable.Transformer<GankHttpResponse<T>, T> handleGankResult() {   //compose判断结果
+        return new Observable.Transformer<GankHttpResponse<T>, T>() {
+            @Override
+            public Observable<T> call(Observable<GankHttpResponse<T>> httpResponseObservable) {
+                return httpResponseObservable.flatMap(new Func1<GankHttpResponse<T>, Observable<T>>() {
+                    @Override
+                    public Observable<T> call(GankHttpResponse<T> tGankHttpResponse) {
+                        if(!tGankHttpResponse.getError()) {
+                            return createData(tGankHttpResponse.getResults());
+                        } else {
+                            return Observable.error(new ApiException("服务器返回error"));
+                        }
+                    }
+                });
+            }
+        };
+    }
+
+
+
 
 
 

@@ -30,6 +30,7 @@ public class RetrofitHelper {
 
     private static OkHttpClient okHttpClient=null;
     private static  VideoApis videoApis;
+    public static GankApis gankApis;
 
     public static VideoApis getVideoApis(){
 
@@ -49,6 +50,22 @@ public class RetrofitHelper {
 
 
 
+    }
+
+    public static GankApis getGankApis(){
+        initOkHttp();
+        if(gankApis==null){
+            Retrofit retrofit=new Retrofit.Builder()
+                    .client(okHttpClient)
+                    .baseUrl(GankApis.HOST)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+            gankApis=retrofit.create(GankApis.class);
+
+        }
+
+        return gankApis;
     }
 
     /**

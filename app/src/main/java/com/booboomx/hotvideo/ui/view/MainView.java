@@ -1,6 +1,7 @@
 package com.booboomx.hotvideo.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,22 +12,33 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.booboomx.hotvideo.R;
+import com.booboomx.hotvideo.app.Constants;
 import com.booboomx.hotvideo.base.RootView;
 import com.booboomx.hotvideo.presenter.contract.MainContract;
+import com.booboomx.hotvideo.ui.activity.CollectionActivity;
 import com.booboomx.hotvideo.ui.activity.MainActivity;
+import com.booboomx.hotvideo.ui.activity.SettingActivity;
+import com.booboomx.hotvideo.ui.activity.WelfareActivity;
 import com.booboomx.hotvideo.ui.adapter.MyFragmentPagerAdapter;
 import com.booboomx.hotvideo.ui.fragment.ClassificationFragment;
 import com.booboomx.hotvideo.ui.fragment.DiscoverFragment;
 import com.booboomx.hotvideo.ui.fragment.MineFragment;
 import com.booboomx.hotvideo.ui.fragment.RecommendFragment;
+import com.booboomx.hotvideo.utils.EventUtil;
+import com.booboomx.hotvideo.utils.PreUtils;
 import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.RxUtils;
 import com.booboomx.hotvideo.utils.StringUtils;
+import com.booboomx.hotvideo.utils.ThemeUtils;
 import com.booboomx.hotvideo.widget.ResideLayout;
 import com.booboomx.hotvideo.widget.UnScrollViewPager;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
+import com.pgyersdk.feedback.PgyFeedback;
+import com.pgyersdk.views.PgyerDialog;
 
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
@@ -235,18 +247,48 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
         switch (view.getId()) {
             case R.id.tv_collection:
+                mContext.startActivity(new Intent(mContext, CollectionActivity.class));
+
                 break;
             case R.id.tv_downLoad:
+                EventUtil.showToast(mContext, "敬请期待");
+
                 break;
             case R.id.tv_goodSoft:
+                mContext.startActivity(new Intent(mContext, WelfareActivity.class));
+
                 break;
             case R.id.tv_share:
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.setting_recommend_content));
+                shareIntent.setType("text/plain");
+
+                //设置分享列表的标题，并且每次都显示分享列表
+                mContext.startActivity(Intent.createChooser(shareIntent, "分享到"));
                 break;
             case R.id.tv_feedBack:
+                // 以对话框的形式弹出
+                PgyerDialog.setDialogTitleBackgroundColor(PreUtils.getString(mContext, Constants.PRIMARYCOLOR, "#000000"));
+                PgyerDialog.setDialogTitleTextColor(PreUtils.getString(mContext, Constants.TITLECOLOR, "#0aa485"));
+                PgyFeedback.getInstance().showDialog(mContext).d().setChecked(false);
                 break;
             case R.id.tv_setting:
+                mContext.startActivity(new Intent(mContext, SettingActivity.class));
+
                 break;
             case R.id.tv_about:
+                new MaterialDialog.Builder(mContext)
+                        .title(R.string.about)
+                        .titleColor(ThemeUtils.getThemeColor(mContext, R.attr.colorPrimary))
+                        .icon(new IconicsDrawable(mContext)
+                                .color(ThemeUtils.getThemeColor(mContext, R.attr.colorPrimary))
+                                .icon(MaterialDesignIconic.Icon.gmi_account)
+                                .sizeDp(20))
+                        .content(R.string.about_me)
+                        .contentColor(ThemeUtils.getThemeColor(mContext, R.attr.colorPrimary))
+                        .positiveText(R.string.close)
+                        .show();
                 break;
             case R.id.tv_theme:
                 setTheme("");
