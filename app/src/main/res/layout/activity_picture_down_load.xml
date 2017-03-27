@@ -10,13 +10,40 @@
 
     <com.wingsofts.dragphotoview.DragPhotoView
         android:id="@+id/photoView"
+        android:layout_weight="10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"/>
 
-    <!--<com.booboomx.hotvideo.widget.FixMultiViewPager-->
-        <!--android:id="@+id/viewPager"-->
-        <!--style="@style/both_match_style"-->
-       <!--/>-->
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        >
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="1/3" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_download"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_file_download_black_24dp" />
+    </RelativeLayout>
+
 
 
 </LinearLayout>

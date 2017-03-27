@@ -2,22 +2,42 @@ package com.booboomx.hotvideo.ui.activity;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
+import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 
 import com.booboomx.hotvideo.R;
+import com.booboomx.hotvideo.app.App;
+import com.booboomx.hotvideo.net.DownLoadSubscribe;
+import com.booboomx.hotvideo.net.ObservableProvider;
+import com.booboomx.hotvideo.utils.FileUtils;
 import com.booboomx.hotvideo.utils.ImageLoader;
+import com.booboomx.hotvideo.utils.SnackBarUtils;
+import com.booboomx.hotvideo.utils.SystemShareUtils;
 import com.wingsofts.dragphotoview.DragPhotoView;
+
+import java.io.File;
 
 /**
  * 图片下载的界面
  */
 public class PictureDownLoadActivity extends AppCompatActivity {
 
+    private AppCompatImageView mIvDownload;
+
     private String imgUrl;
 
     private DragPhotoView mPhotoView;
+
+    private String mSavePath;
+    private RelativeLayout mRlBottom;
+
 
     int mOriginLeft;
     int mOriginTop;
@@ -42,6 +62,8 @@ public class PictureDownLoadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_down_load);
         getIntentData();
         mPhotoView= (DragPhotoView) findViewById(R.id.photoView);
+        mIvDownload= (AppCompatImageView) findViewById(R.id.iv_download);
+        mRlBottom= (RelativeLayout) findViewById(R.id.rl_bottom);
 
         ImageLoader.loadAllImage(PictureDownLoadActivity.this,imgUrl,mPhotoView);
 
@@ -60,7 +82,53 @@ public class PictureDownLoadActivity extends AppCompatActivity {
             }
         });
 
+        mIvDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                downloadPicture(0);
+
+
+            }
+        });
+
+
+
+    }
+
+
+    public static final String TAG="PictureDownLoad";
+    private void downloadPicture(final  int action) {
+
+        mSavePath = FileUtils.getSaveImagePath(this) + File.separator + FileUtils.getFileName(imgUrl);
+        Log.i(TAG, "downloadPicture: imgUrl->"+imgUrl);
+        Log.i(TAG, "downloadPicture: mSavePath->"+mSavePath);
+
+        ObservableProvider.getDefault().download(imgUrl, new DownLoadSubscribe(FileUtils.getSaveImagePath(this), FileUtils.getFileName(imgUrl)) {
+            @Override
+            public void onCompleted(File file) {
+                if (action == 0) {
+                    SnackBarUtils.makeLong(mRlBottom, "已保存至相册").info();
+                    MediaScannerConnection.scanFile(App.getInstance(), new String[]{
+                                    mSavePath},
+                            null, null);
+                } else {
+                    SystemShareUtils.shareImage(PictureDownLoadActivity.this, Uri.parse(file.getAbsolutePath()));
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (action == 0)
+                    SnackBarUtils.makeLong(mRlBottom, "保存失败:" + e).danger();
+            }
+
+            @Override
+            public void onProgress(double progress, long downloadByte, long totalByte) {
+                Log.i(TAG, "totalByte:" + totalByte + " downloadedByte:" + downloadByte + " progress:" + progress);
+
+            }
+        });
 
     }
 

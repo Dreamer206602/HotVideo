@@ -33,6 +33,23 @@ public class RxUtils {
         };
     }
 
+    /**
+     * 下载 全在子线程
+     * @param <T>
+     * @return
+     */
+    public static <T> Observable.Transformer<T, T> all_io() {
+        return new Observable.Transformer<T, T>() {
+            @Override
+            public Observable<T> call(Observable<T> tObservable) {
+                return tObservable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io());
+            }
+        };
+    }
+
+
+
+
 
     /**
      * 统一结果处理
