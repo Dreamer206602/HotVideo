@@ -38,4 +38,15 @@ public class ImageLoader {
     }
 
 
+    public static void loadAllImage(Activity activity, String url, ImageView iv){
+        if(!activity.isDestroyed()){
+            Glide.with(activity).load(url).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv);
+
+        }
+
+    }
+
+
+
+
 }

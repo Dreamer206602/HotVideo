@@ -255,6 +255,9 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
                 break;
             case R.id.tv_goodSoft:
+                if(getResideLayout().isOpen()){
+                    getResideLayout().closePane();
+                }
                 mContext.startActivity(new Intent(mContext, WelfareActivity.class));
 
                 break;

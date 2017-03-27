@@ -73,10 +73,13 @@
             android:value="659799680dd5e2c22ddb6e44b20554ed">
         </meta-data>
 
-
-        <activity android:name=".ui.activity.WelfareActivity"
-                  android:theme="@style/CustomTransparent"
-            />
+        <activity
+            android:name=".ui.activity.WelfareActivity"
+            android:theme="@style/CustomTransparent"/>
+        <activity android:name=".ui.activity.PictureDownLoadActivity"
+            android:theme="@style/PictureDownLoadTheme"
+            >
+        </activity>
     </application>
 
 </manifest>

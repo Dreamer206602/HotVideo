@@ -1,18 +1,21 @@
 package com.booboomx.hotvideo.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.booboomx.hotvideo.R;
 import com.booboomx.hotvideo.base.RootView;
 import com.booboomx.hotvideo.bean.gank.GankItemBean;
 import com.booboomx.hotvideo.presenter.WelfarePresenter;
 import com.booboomx.hotvideo.presenter.contract.WelfareContract;
+import com.booboomx.hotvideo.ui.activity.PictureDownLoadActivity;
 import com.booboomx.hotvideo.ui.activity.WelfareActivity;
 import com.booboomx.hotvideo.ui.adapter.WelfareAdapter;
 import com.booboomx.hotvideo.utils.EventUtil;
@@ -20,7 +23,6 @@ import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.ScreenUtil;
 import com.booboomx.hotvideo.widget.ColorTextView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
-import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 
 import java.util.List;
@@ -41,8 +43,12 @@ public class WelfareView extends RootView<WelfareContract.Presenter> implements 
 
     WelfareAdapter mAdapter;
 
+    private WelfareActivity mActivity;
+
     public WelfareView(Context context) {
         super(context);
+
+        mActivity= (WelfareActivity) context;
     }
 
     public WelfareView(Context context, @Nullable AttributeSet attrs) {
@@ -154,12 +160,6 @@ public class WelfareView extends RootView<WelfareContract.Presenter> implements 
     protected void initEvent() {
 
         mRecyclerView.setRefreshListener(this);
-        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-
-            }
-        });
 
 
         mAdapter.setError(R.layout.view_error)
@@ -175,6 +175,29 @@ public class WelfareView extends RootView<WelfareContract.Presenter> implements 
             public void onClick(View v) {
                 mRecyclerView.showProgress();
                 onRefresh();
+            }
+        });
+
+
+        mAdapter.setListener(new WelfareAdapter.OnPictureClickListener() {
+            @Override
+            public void imageClick(GankItemBean gankItemBean, ImageView imageView) {
+
+
+                Intent intent = new Intent(getContext(), PictureDownLoadActivity.class);
+                int location[] = new int[2];
+
+                imageView.getLocationOnScreen(location);
+                intent.putExtra("left", location[0]);
+                intent.putExtra("top", location[1]);
+                intent.putExtra("height", imageView.getHeight());
+                intent.putExtra("width", imageView.getWidth());
+                intent.putExtra("imageUrl",gankItemBean.getUrl());
+                mContext.startActivity(intent);
+//                mActivity.overridePendingTransition(0,0);
+
+
+
             }
         });
 

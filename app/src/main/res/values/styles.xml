@@ -16,6 +16,17 @@
     </style>
 
 
+    <style name="PictureDownLoadTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground" >@color/translucent</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:colorBackgroundCacheHint">@null</item>
+
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+
+    </style>
+
+
 
     <style name="mine_lin_style" parent="lmatch_hwrap_style">
         <item name="android:padding">13dp</item>

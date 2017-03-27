@@ -1,6 +1,7 @@
 package com.booboomx.hotvideo.ui.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -16,6 +17,23 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
  */
 
 public class WelfareAdapter extends RecyclerArrayAdapter<GankItemBean> {
+
+
+   public interface OnPictureClickListener{
+        void imageClick(GankItemBean gankItemBean ,ImageView imageView);
+    }
+
+
+    public void setListener(OnPictureClickListener listener) {
+        mListener = listener;
+    }
+
+    public OnPictureClickListener mListener;
+
+
+
+
+
     public WelfareAdapter(Context context) {
         super(context);
     }
@@ -40,7 +58,7 @@ public class WelfareAdapter extends RecyclerArrayAdapter<GankItemBean> {
         }
 
         @Override
-        public void setData(GankItemBean data) {
+        public void setData(final GankItemBean data) {
             super.setData(data);
 
             imgPicture.setBackgroundResource(R.mipmap.default_200);
@@ -53,6 +71,15 @@ public class WelfareAdapter extends RecyclerArrayAdapter<GankItemBean> {
                     .asBitmap()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgPicture);
+
+            if (imgPicture != null) {
+                imgPicture.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mListener.imageClick(data,imgPicture);
+                    }
+                });
+            }
 
 
         }
