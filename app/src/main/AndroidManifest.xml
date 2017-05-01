@@ -76,8 +76,12 @@
         <activity
             android:name=".ui.activity.WelfareActivity"
             android:theme="@style/CustomTransparent"/>
-        <activity android:name=".ui.activity.PictureDownLoadActivity"
-            android:theme="@style/PictureDownLoadTheme"
+        <activity
+            android:name=".ui.activity.PictureDownLoadActivity"
+            android:theme="@style/PictureDownLoadTheme">
+        </activity>
+        <activity android:name=".ui.activity.TanTanActivity"
+                  android:theme="@style/CustomTransparent"
             >
         </activity>
     </application>

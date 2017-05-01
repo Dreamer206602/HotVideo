@@ -28,6 +28,7 @@ import com.booboomx.hotvideo.ui.fragment.DiscoverFragment;
 import com.booboomx.hotvideo.ui.fragment.MineFragment;
 import com.booboomx.hotvideo.ui.fragment.RecommendFragment;
 import com.booboomx.hotvideo.utils.EventUtil;
+import com.booboomx.hotvideo.utils.JumpUtil;
 import com.booboomx.hotvideo.utils.PreUtils;
 import com.booboomx.hotvideo.utils.Preconditions;
 import com.booboomx.hotvideo.utils.RxUtils;
@@ -78,8 +79,13 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
     @BindView(R.id.tv_about)
     TextView mTvAbout;
+
     @BindView(R.id.tv_theme)
     TextView mTvTheme;
+    @BindView(R.id.tv_tantan)
+    TextView mTvTanTan;
+
+
 
     @BindView(R.id.viewPager)
     UnScrollViewPager mViewPager;
@@ -144,6 +150,10 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
         StringUtils.setIconDrawable(mContext, mTvSetting, MaterialDesignIconic.Icon.gmi_settings, 16, 10);//设置
         StringUtils.setIconDrawable(mContext, mTvAbout, MaterialDesignIconic.Icon.gmi_account, 16, 10);//
         StringUtils.setIconDrawable(mContext, mTvTheme, MaterialDesignIconic.Icon.gmi_palette, 16, 10);//
+
+
+        StringUtils.setIconDrawable(mContext, mTvTanTan, MaterialDesignIconic.Icon.gmi_apple, 16, 10);//探探
+
 
 
     }
@@ -242,7 +252,7 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
     }
 
 
-    @OnClick({R.id.tv_collection, R.id.tv_downLoad, R.id.tv_goodSoft, R.id.tv_share, R.id.tv_feedBack, R.id.tv_setting, R.id.tv_about, R.id.tv_theme})
+    @OnClick({R.id.tv_collection, R.id.tv_downLoad, R.id.tv_goodSoft, R.id.tv_share, R.id.tv_feedBack, R.id.tv_setting, R.id.tv_about, R.id.tv_theme,R.id.tv_tantan})
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -295,6 +305,11 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
                 break;
             case R.id.tv_theme:
                 setTheme("");
+                break;
+
+            case R.id.tv_tantan:
+                JumpUtil.go2TanTanActivity(getContext());
+
                 break;
         }
 

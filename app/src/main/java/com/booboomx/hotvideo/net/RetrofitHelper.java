@@ -106,9 +106,6 @@ public class RetrofitHelper {
 
                     int tryCount=0;
                     Response response = chain.proceed(request);
-                    String content = response.toString();
-
-                    Log.i("嗷大喵来打印日志咯", "response body:" + content);
 
 
                     while (!response.isSuccessful()&&tryCount<3){
@@ -119,6 +116,11 @@ public class RetrofitHelper {
                         // retry the request
                        response= chain.proceed(request);
 
+                        String content = response.body().toString();
+
+                        Log.i("嗷大喵来打印日志咯", "response body:" + content);
+
+
                     }
 
                     if (SystemUtils.isNetworkConnected()) {
@@ -128,6 +130,12 @@ public class RetrofitHelper {
                                 .header("Cache-Control", "public, max-age=" + maxAge)
                                 .removeHeader("Pragma")
                                 .build();
+
+
+                        String content = response.body().toString();
+
+                        Log.i("嗷大喵来打印日志咯", "response body:" + content);
+
                     } else {
                         // 无网络时，设置超时为4周
                         int maxStale = 60 * 60 * 24 * 28;
@@ -135,6 +143,11 @@ public class RetrofitHelper {
                                 .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                                 .removeHeader("Pragma")
                                 .build();
+
+                        String content = response.body().toString();
+
+                        Log.i("嗷大喵来打印日志咯", "response body:" + content);
+
                     }
 
                     return response;

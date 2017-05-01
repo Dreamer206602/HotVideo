@@ -122,8 +122,6 @@ public class MineView extends RootView<MineContract.Presenter>implements MineCon
         toolbar.setTitle("");
         titleName.setText(R.string.mine);
 
-
-
         StringUtils.setIconDrawable(mContext, mTvHistory, MaterialDesignIconic.Icon.gmi_account_calendar, 16, 15);
         StringUtils.setIconDrawable(mContext, tvDown, MaterialDesignIconic.Icon.gmi_time_countdown, 16, 15);
         StringUtils.setIconDrawable(mContext, tvCollection, MaterialDesignIconic.Icon.gmi_collection_bookmark, 16, 15);

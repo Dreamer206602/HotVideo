@@ -7,8 +7,9 @@
 
     <com.booboomx.hotvideo.widget.ColorTextView
         android:id="@+id/title_name"
+        android:textColor="?attr/md_title_color"
         style="@style/title_tv_style"
         android:layout_width="match_parent"
-        android:textColor="?attr/md_title_color"/>
+        />
 
 </com.booboomx.hotvideo.widget.theme.ColorRelativeLayout>

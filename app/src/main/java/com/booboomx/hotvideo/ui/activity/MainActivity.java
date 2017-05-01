@@ -157,9 +157,5 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         EventBus.getDefault().post("", Set_Theme_Color);
 
 
-
-
-
-
     }
 }

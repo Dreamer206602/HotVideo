@@ -9,6 +9,7 @@ import android.content.Intent;
 
 import com.booboomx.hotvideo.bean.VideoInfo;
 import com.booboomx.hotvideo.ui.activity.MainActivity;
+import com.booboomx.hotvideo.ui.activity.TanTanActivity;
 import com.booboomx.hotvideo.ui.activity.VideoInfoActivity;
 import com.booboomx.hotvideo.ui.activity.VideoListActivity;
 import com.booboomx.hotvideo.ui.activity.WelcomeActivity;
@@ -45,6 +46,13 @@ public class JumpUtil {
     private static void jump(Context a, Class<?> clazz) {
         Intent intent = new Intent(a, clazz);
         a.startActivity(intent);
+    }
+
+
+    public static void  go2TanTanActivity(Context context){
+        Intent intent=new Intent(context, TanTanActivity.class);
+        context.startActivity(intent);
+
     }
 
 }

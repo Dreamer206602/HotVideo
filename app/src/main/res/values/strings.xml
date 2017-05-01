@@ -39,5 +39,6 @@
     <string name="about_me">\n博 客：<a href="http://www.jianshu.com/u/c9f7daba2092">李福来</a>\n\nGithub：<a href="https://github.com/Dreamer206602/HotVideo">HotVideo</a></string>
     <string name="setting_recommend_url">https://github.com/Dreamer206602/HotVideo</string>
     <string name="welfare">福利</string>
+    <string name="tantan">探探</string>
 
 </resources>

@@ -4,9 +4,9 @@
                                            style="@style/container_style">
 
 
+    <!--        android:background="?attr/menuBackground"-->
     <com.booboomx.hotvideo.widget.theme.ColorRelativeLayout
         android:id="@+id/menu"
-        android:background="?attr/menuBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -78,6 +78,12 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_tantan"
+                    style="@style/MenuStyle"
+                    android:text="@string/tantan"
+                    />
+
+                <TextView
                     android:id="@+id/tv_share"
                     style="@style/MenuStyle"
                     android:text="@string/share"
@@ -135,8 +141,8 @@
     </com.booboomx.hotvideo.widget.theme.ColorRelativeLayout>
 
 
+    <!--        android:background="?attr/background"-->
     <com.booboomx.hotvideo.widget.theme.ColorRelativeLayout
-        android:background="?attr/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

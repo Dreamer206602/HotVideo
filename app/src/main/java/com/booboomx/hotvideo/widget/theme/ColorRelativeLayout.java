@@ -14,8 +14,6 @@ public class ColorRelativeLayout extends RelativeLayout implements ColorUiInterf
 
     private  int attr_background=-1;
 
-
-
     public ColorRelativeLayout(Context context) {
         super(context);
     }
