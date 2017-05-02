@@ -52,7 +52,6 @@ public class JumpUtil {
     public static void  go2TanTanActivity(Context context){
         Intent intent=new Intent(context, TanTanActivity.class);
         context.startActivity(intent);
-
     }
 
 }

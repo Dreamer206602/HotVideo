@@ -309,7 +309,6 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
             case R.id.tv_tantan:
                 JumpUtil.go2TanTanActivity(getContext());
-
                 break;
         }
 

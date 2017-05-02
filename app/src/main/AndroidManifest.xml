@@ -80,9 +80,12 @@
             android:name=".ui.activity.PictureDownLoadActivity"
             android:theme="@style/PictureDownLoadTheme">
         </activity>
-        <activity android:name=".ui.activity.TanTanActivity"
-                  android:theme="@style/CustomTransparent"
-            >
+        <activity
+            android:name=".ui.activity.TanTanActivity"
+            android:theme="@style/CustomTransparent">
+        </activity>
+        <activity android:name=".ui.activity.TanTan1Activity"
+                  android:theme="@style/CustomTransparent">
         </activity>
     </application>
 

@@ -77,13 +77,12 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
 
         //移除 OnTouchListener,否则触摸滑动会乱了
         viewHolder.itemView.setOnTouchListener(null);
-
         int layoutPosition = viewHolder.getLayoutPosition();
 
         T remove = dataList.remove(layoutPosition);
         mAdapter.notifyDataSetChanged();
         if (mListener != null) {
-            mListener.onSwiped(viewHolder,remove,direction);
+            mListener.onSwiped(viewHolder,remove,direction==ItemTouchHelper.LEFT?CardConfig.SWIPED_LEFT:CardConfig.SWIPED_RIGHT);
         }
 
         //没有数据的时候
@@ -108,7 +107,6 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
 
             float ratio = dX / getThreshold(recyclerView, viewHolder);
 
-
             // ratio (-1,1) 最大为1 或者－1
             if(ratio>1){
                 ratio=1;
@@ -126,8 +124,7 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
 
 
                     int index = childCount - position - 1;
-
-                    View view = recyclerView.getChildAt(index);
+                    View view = recyclerView.getChildAt(position);
 
                     view.setScaleX(1-index*CardConfig.DEFAULT_SCALE+Math.abs(ratio)*CardConfig.DEFAULT_SCALE);
                     view.setScaleY(1-index*CardConfig.DEFAULT_SCALE+Math.abs(ratio)*CardConfig.DEFAULT_SCALE);
@@ -140,14 +137,9 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
             }else{
 
                 // 当数据源个数小于或等于最大显示数时
-
                 for (int position = 0; position < childCount-1; position++) {
-
                     int index = childCount - position - 1;
-
-
-                    View view = recyclerView.getChildAt(index);
-
+                    View view = recyclerView.getChildAt(position);
                     view.setScaleX(1-index*CardConfig.DEFAULT_SCALE+Math.abs(ratio)*CardConfig.DEFAULT_SCALE);
                     view.setScaleY(1-index*CardConfig.DEFAULT_SCALE+Math.abs(ratio)*CardConfig.DEFAULT_SCALE);
 
@@ -171,13 +163,6 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
 
 
         }
-
-
-
-
-
-
-
 
 
     }
