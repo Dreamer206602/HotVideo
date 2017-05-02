@@ -17,6 +17,12 @@
             android:id="@+id/btn_tantan1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <android.support.v7.widget.AppCompatButton
+            android:layout_marginTop="10dp"
+            android:text="人人影视"
+            android:id="@+id/btn_renren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
 

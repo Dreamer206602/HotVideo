@@ -15,12 +15,17 @@ public class TanTanActivity extends SwipeBackActivity {
     @BindView(R.id.title_name)
     ColorTextView titleName;
 
-   @OnClick(R.id.btn_tantan1)
+   @OnClick({R.id.btn_tantan1,R.id.btn_renren})
    public void onClick(View view){
        switch (view.getId()){
            case R.id.btn_tantan1:
                Intent intent=new Intent(TanTanActivity.this,TanTan1Activity.class);
                startActivity(intent);
+               finish();
+               break;
+
+           case R.id.btn_renren:
+               startActivity(new Intent(TanTanActivity.this,RenRenActivity.class));
                finish();
                break;
        }

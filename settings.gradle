@@ -1,1 +1,1 @@
-include ':app', ':cardswipelibrary'
+include ':app', ':cardswipelibrary', ':TanTanLibrary'
