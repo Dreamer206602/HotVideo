@@ -27,6 +27,7 @@
 * 使用MVP架构整个项目，对应于model、ui、presenter三个包
 * 使用Realm做阅读记录和收藏记录的增、删、查、改
 * 使用Glide做图片的处理和加载
+* 使用RxJava和Retrofit进行图片下载功能
 * 使用RecyclerView实现下拉刷新、上拉加载、侧滑删除、长按拖曳
 * 支持主题设置
 * 包含搜索、收藏、历史等功能
