@@ -3,15 +3,12 @@ package com.booboomx.hotvideo.bean.xianyu;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.booboomx.hotvideo.BR;
 
 /**
  * Created by booboomx on 17/5/7.
  */
 
 public class FunctionItemEntity extends BaseObservable{
-
-
     private String iconUrl;
     private String title;
     private String desc;
@@ -24,7 +21,7 @@ public class FunctionItemEntity extends BaseObservable{
 
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
-        notifyPropertyChanged(BR.iconUrl);
+//        notifyPropertyChanged(BR.iconUrl);
     }
 
     @Bindable
@@ -34,7 +31,7 @@ public class FunctionItemEntity extends BaseObservable{
 
     public void setTitle(String title) {
         this.title = title;
-        notifyPropertyChanged(BR.title);
+//        notifyPropertyChanged(BR.title);
     }
 
     @Bindable
@@ -44,7 +41,7 @@ public class FunctionItemEntity extends BaseObservable{
 
     public void setDesc(String desc) {
         this.desc = desc;
-        notifyPropertyChanged(BR.desc);
+//        notifyPropertyChanged(BR.desc);
     }
 
     public Class getCls() {

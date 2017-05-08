@@ -3,8 +3,6 @@ package com.booboomx.hotvideo.bean.xianyu;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.booboomx.hotvideo.BR;
-
 import java.util.List;
 
 /**
@@ -32,7 +30,7 @@ public class HomeListEntity extends BaseObservable {
 
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
-        notifyPropertyChanged(BR.iconUrl);
+//        notifyPropertyChanged(BR.iconUrl);
     }
 
     public String getName() {
@@ -50,7 +48,7 @@ public class HomeListEntity extends BaseObservable {
 
     public void setFollowed(boolean followed) {
         this.followed = followed;
-        notifyPropertyChanged(BR.followed);
+//        notifyPropertyChanged(BR.followed);
     }
 
     public String getDate() {
@@ -116,6 +114,6 @@ public class HomeListEntity extends BaseObservable {
 
     public void setLiked(boolean liked) {
         this.liked = liked;
-        notifyPropertyChanged(BR.liked);
+//        notifyPropertyChanged(BR.liked);
     }
 }

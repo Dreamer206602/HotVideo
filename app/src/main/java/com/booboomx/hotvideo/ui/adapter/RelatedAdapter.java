@@ -58,11 +58,6 @@ public class RelatedAdapter extends RecyclerArrayAdapter<VideoInfo> {
             DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
 
             int width = displayMetrics.widthPixels / 3;//宽度为屏幕高度的一半
-
-
-
-
-
             layoutParams.height= (int) (width*1.2);
             imgPicture.setLayoutParams(layoutParams);
             ImageLoader.load(getContext(),data.pic,imgPicture);

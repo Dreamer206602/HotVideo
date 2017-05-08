@@ -1,7 +1,7 @@
 package com.chad.library.adapter.base.loadmore;
 
 
-import com.chad.library.R;
+import com.chad.library.adapter.base.R;
 
 /**
  * Created by BlingBling on 2016/10/11.
