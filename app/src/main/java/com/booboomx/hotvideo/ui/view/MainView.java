@@ -22,6 +22,7 @@ import com.booboomx.hotvideo.ui.activity.CollectionActivity;
 import com.booboomx.hotvideo.ui.activity.MainActivity;
 import com.booboomx.hotvideo.ui.activity.SettingActivity;
 import com.booboomx.hotvideo.ui.activity.WelfareActivity;
+import com.booboomx.hotvideo.ui.activity.XianYuActivity;
 import com.booboomx.hotvideo.ui.adapter.MyFragmentPagerAdapter;
 import com.booboomx.hotvideo.ui.fragment.ClassificationFragment;
 import com.booboomx.hotvideo.ui.fragment.DiscoverFragment;
@@ -85,6 +86,8 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
     @BindView(R.id.tv_tantan)
     TextView mTvTanTan;
 
+    @BindView(R.id.tv_xianyu)
+    TextView mTvXianYu;
 
 
     @BindView(R.id.viewPager)
@@ -153,7 +156,7 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
 
         StringUtils.setIconDrawable(mContext, mTvTanTan, MaterialDesignIconic.Icon.gmi_apple, 16, 10);//探探
-
+        StringUtils.setIconDrawable(mContext, mTvXianYu, MaterialDesignIconic.Icon.gmi_android, 16, 10);//咸鱼首页的效果
 
 
     }
@@ -192,7 +195,6 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
                 postBannerState(true);
 
 
-
             }
 
             @Override
@@ -223,11 +225,10 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
                     @Override
                     public void onNext(Long aLong) {
-                        EventBus.getDefault().post(stop,Banner_Stop);
+                        EventBus.getDefault().post(stop, Banner_Stop);
 
                     }
                 });
-
 
 
     }
@@ -252,7 +253,7 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
     }
 
 
-    @OnClick({R.id.tv_collection, R.id.tv_downLoad, R.id.tv_goodSoft, R.id.tv_share, R.id.tv_feedBack, R.id.tv_setting, R.id.tv_about, R.id.tv_theme,R.id.tv_tantan})
+    @OnClick({R.id.tv_collection, R.id.tv_downLoad, R.id.tv_goodSoft, R.id.tv_share, R.id.tv_feedBack, R.id.tv_setting, R.id.tv_about, R.id.tv_theme, R.id.tv_tantan,R.id.tv_xianyu})
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -265,7 +266,7 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
                 break;
             case R.id.tv_goodSoft:
-                if(getResideLayout().isOpen()){
+                if (getResideLayout().isOpen()) {
                     getResideLayout().closePane();
                 }
                 mContext.startActivity(new Intent(mContext, WelfareActivity.class));
@@ -309,6 +310,10 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
 
             case R.id.tv_tantan:
                 JumpUtil.go2TanTanActivity(getContext());
+                break;
+            case R.id.tv_xianyu:
+                mActivity.startActivity(new Intent(mContext, XianYuActivity.class));
+                mActivity.finish();
                 break;
         }
 

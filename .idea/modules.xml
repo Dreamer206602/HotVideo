@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/HotVideo.iml" filepath="$PROJECT_DIR$/HotVideo.iml" />
       <module fileurl="file://$PROJECT_DIR$/TanTanLibrary/TanTanLibrary.iml" filepath="$PROJECT_DIR$/TanTanLibrary/TanTanLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bravh/bravh.iml" filepath="$PROJECT_DIR$/bravh/bravh.iml" />
       <module fileurl="file://$PROJECT_DIR$/cardswipelibrary/cardswipelibrary.iml" filepath="$PROJECT_DIR$/cardswipelibrary/cardswipelibrary.iml" />
     </modules>
   </component>

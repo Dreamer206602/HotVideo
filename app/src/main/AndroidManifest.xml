@@ -88,9 +88,11 @@
             android:name=".ui.activity.TanTan1Activity"
             android:theme="@style/CustomTransparent">
         </activity>
-        <activity android:name=".ui.activity.RenRenActivity"
-                  android:theme="@style/CustomTransparent"
-            >
+        <activity
+            android:name=".ui.activity.RenRenActivity"
+            android:theme="@style/CustomTransparent">
+        </activity>
+        <activity android:name=".ui.activity.XianYuActivity">
         </activity>
     </application>
 

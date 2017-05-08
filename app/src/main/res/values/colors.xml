@@ -6,6 +6,9 @@
 
     <color name="translucent">#00000000</color>
 
+    <color name="colorPrimaryYellow">#FFCC00</color>
+    <color name="colorPrimaryDarkYellow">#FFCC00</color>
+
 
 
 
@@ -132,5 +135,14 @@
     <color name="colorBlueGreyAccent">#FF4081</color>
     <color name="colorBlueGreyPrimaryCenter">#27373e</color>
 
+
+    <color name="colorTextNormal">#292929</color>
+    <color name="colorTextGary">#999999</color>
+    <color name="colorBackground">#f0f0f0</color>
+    <color name="colorDialogNormal">#0079FF</color>
+    <color name="colorDialogDeep">#FF4744</color>
+
+    <!--分割线-->
+    <color name="colorDividedLine">#FFE0E0E0</color>
 
 </resources>
